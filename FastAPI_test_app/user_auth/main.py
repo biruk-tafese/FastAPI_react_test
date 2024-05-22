@@ -21,3 +21,16 @@ fake_users_db = {
         "disabled": True,
     }
 }
+
+app = FastAPI()
+
+def fake_hash_password(password: str):
+    return "fakehashed" + password
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+class User(BaseModel):
+    username: str
+    full_name: str
+    email: str = None
+    disabled: bool = None
